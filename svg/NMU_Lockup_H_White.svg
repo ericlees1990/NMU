@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 1180 328" role="img" aria-label="NEW MATERIALS UNION">
-<path d="M6.00,0.00L79.00,0.00L304.00,247.00L229.00,247.00Z" fill="#FFFFFF"/><path d="M216.50,0.00L285.50,0.00L196.00,102.00L160.00,64.00Z" fill="#FFFFFF"/><path d="M4.00,22.50L50.50,73.00L50.50,166.00L4.00,218.00Z" fill="#FFFFFF"/><path d="M0.00,247.00L66.50,247.00L133.50,170.00L100.00,132.50Z" fill="#FFFFFF"/>
-<g fill="#FFFFFF" font-family="Montserrat, Inter, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="58" letter-spacing="4">
-  <text x="360" y="108">NEW MATERIALS</text>
-  <text x="360" y="198">UNION</text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2486.90 657.00" role="img" aria-label="NEW MATERIALS UNION lockup (Scheme A)">
+<!-- Approximate vector lockup from Scheme A locked raster + live type. Outline fonts before print. -->
+
+<path transform="translate(8,8.00)" d="M6.00,67.00L95.56,88.00L281.12,389.00L234.60,313.00Z" fill="#FFFFFF"/><path transform="translate(8,8.00)" d="M252.35,111.00L294.98,6.00L302.25,388.63L154.96,223.63Z" fill="#FFFFFF"/><path transform="translate(8,8.00)" d="M15.04,168.32L14.62,168.16L19.62,253.26L24.04,319.53Z" fill="#FFFFFF"/><path transform="translate(8,8.00)" d="M26.12,271.00L430.31,635.00L128.98,298.05L33.14,192.53Z" fill="#FFFFFF"/>
+<text x="559.36" y="244.17" fill="#FFFFFF" font-family="Montserrat, Inter, 'Helvetica Neue', Arial, sans-serif" font-size="247.68" font-weight="600" letter-spacing="0.04em">NEW MATERIALS</text>
+<text x="559.36" y="529.00" fill="#FFFFFF" font-family="Montserrat, Inter, 'Helvetica Neue', Arial, sans-serif" font-size="247.68" font-weight="600" letter-spacing="0.04em">UNION</text>
 </svg>
