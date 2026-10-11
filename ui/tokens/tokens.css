@@ -1,0 +1,111 @@
+/**
+ * NEW MATERIALS UNION / 新材联 — UI Design Tokens
+ * Brand VI Scheme A only · v1.0.0
+ * Navy (#1E3A5F) = accent only (links, focus, selected). Never logo fill.
+ */
+
+:root {
+  /* ——— Brand palette ——— */
+  --nmu-black: #000000;
+  --nmu-white: #FFFFFF;
+  --nmu-navy: #1E3A5F;
+  --nmu-steel: #8A9199;
+  --nmu-surface: #F5F6F7;
+  --nmu-surface-muted: #E8EAED;
+  --nmu-danger: #B42318;
+  --nmu-success: #027A48;
+  --nmu-warning: #B54708;
+
+  /* ——— Semantic (light default) ——— */
+  --nmu-bg: var(--nmu-white);
+  --nmu-bg-subtle: var(--nmu-surface);
+  --nmu-bg-muted: var(--nmu-surface-muted);
+  --nmu-bg-inverse: var(--nmu-black);
+  --nmu-text: var(--nmu-black);
+  --nmu-text-secondary: var(--nmu-steel);
+  --nmu-text-inverse: var(--nmu-white);
+  --nmu-border: var(--nmu-surface-muted);
+  --nmu-border-strong: var(--nmu-black);
+  --nmu-primary: var(--nmu-black);
+  --nmu-primary-fg: var(--nmu-white);
+  --nmu-accent: var(--nmu-navy);
+  --nmu-accent-fg: var(--nmu-white);
+  --nmu-danger-fg: var(--nmu-white);
+  --nmu-focus-ring: var(--nmu-navy);
+
+  /* ——— Typography ——— */
+  --nmu-font-en: Montserrat, Inter, "Helvetica Neue", Arial, sans-serif;
+  --nmu-font-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --nmu-font-mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  --nmu-font: var(--nmu-font-zh), var(--nmu-font-en);
+
+  --nmu-fs-display: 40px;
+  --nmu-fs-h1: 32px;
+  --nmu-fs-h2: 24px;
+  --nmu-fs-h3: 18px;
+  --nmu-fs-body-lg: 16px;
+  --nmu-fs-body: 14px;
+  --nmu-fs-caption: 12px;
+  --nmu-fs-label: 12px;
+
+  --nmu-fw-regular: 400;
+  --nmu-fw-medium: 500;
+  --nmu-fw-semibold: 600;
+
+  /* ——— Spacing (4-base) ——— */
+  --nmu-space-1: 4px;
+  --nmu-space-2: 8px;
+  --nmu-space-3: 12px;
+  --nmu-space-4: 16px;
+  --nmu-space-5: 24px;
+  --nmu-space-6: 32px;
+  --nmu-space-7: 48px;
+
+  /* ——— Radius / elevation ——— */
+  --nmu-radius-none: 0;
+  --nmu-radius-sm: 2px;
+  --nmu-radius-md: 4px;
+  --nmu-radius-full: 9999px;
+
+  --nmu-border-width: 1px;
+  --nmu-shadow-none: none;
+
+  /* ——— Controls ——— */
+  --nmu-control-h-sm: 32px;
+  --nmu-control-h-md: 40px;
+  --nmu-control-h-lg: 48px;
+  --nmu-focus-width: 2px;
+  --nmu-focus-offset: 2px;
+
+  /* ——— Motion ——— */
+  --nmu-duration-fast: 120ms;
+  --nmu-duration: 180ms;
+  --nmu-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-theme="dark"],
+.nmu-theme-dark {
+  --nmu-bg: var(--nmu-black);
+  --nmu-bg-subtle: #0A0A0A;
+  --nmu-bg-muted: #1A1A1A;
+  --nmu-bg-inverse: var(--nmu-white);
+  --nmu-text: var(--nmu-white);
+  --nmu-text-secondary: var(--nmu-steel);
+  --nmu-text-inverse: var(--nmu-black);
+  --nmu-border: #2A2A2A;
+  --nmu-border-strong: var(--nmu-white);
+  --nmu-primary: var(--nmu-white);
+  --nmu-primary-fg: var(--nmu-black);
+  --nmu-accent: #4A7BA7;
+  --nmu-accent-fg: var(--nmu-white);
+  --nmu-danger: #F04438;
+  --nmu-success: #32D583;
+  --nmu-warning: #F79009;
+  --nmu-focus-ring: #4A7BA7;
+}
+
+/* Utility helpers */
+.nmu-focus-ring:focus-visible {
+  outline: var(--nmu-focus-width) solid var(--nmu-focus-ring);
+  outline-offset: var(--nmu-focus-offset);
+}

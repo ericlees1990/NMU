@@ -18,6 +18,10 @@ Brand VI Deliverables / 品牌视觉识别交付包
 - **主入口：** [`manual/NMU_Brand_Guidelines_v1.html`](manual/NMU_Brand_Guidelines_v1.html)
 - **PDF：** [`manual/NMU_Brand_Guidelines_v1.pdf`](manual/NMU_Brand_Guidelines_v1.pdf)
 
+### UI 组件规范
+- **样式指南：** [`ui/NMU_UI_Kit.html`](ui/NMU_UI_Kit.html)
+- **说明与令牌：** [`ui/README.md`](ui/README.md) · `ui/tokens/`
+
 ### 如何使用 Logo
 | 场景 | 使用文件 |
 |------|----------|
@@ -44,7 +48,8 @@ Brand VI Deliverables / 品牌视觉识别交付包
 ├── manual/                         ← HTML / PDF 手册
 ├── svg/                            ← Mark + Lockup（近似矢量）
 ├── png/                            ← Master 锁定稿与导出
-└── assets/                         ← 应用示意与规范图
+├── assets/                         ← 应用示意与规范图
+└── ui/                             ← UI 组件规范（HTML / tokens / 组件图）
 ```
 
 ### 需人工矢量精修
@@ -65,6 +70,8 @@ Brand VI Deliverables / 品牌视觉识别交付包
 | White | `#FFFFFF` | Primary |
 | Blueprint | `#1E3A5F` | Accent only |
 | Steel | `#8A9199` | Neutral |
+
+**UI kit:** [`ui/NMU_UI_Kit.html`](ui/NMU_UI_Kit.html) — component styles and design tokens locked to Scheme A. See [`ui/README.md`](ui/README.md).
 
 Company: 新材联（武汉）科技有限公司 · NEW MATERIALS UNION · AI-powered Building Industries.
 

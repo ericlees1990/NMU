@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEW MATERIALS UNION · UI Design Component Kit · Scheme A</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="tokens/tokens.css" />
+<style>
+/* ——— Kit chrome (style guide shell) ——— */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--nmu-font);
+  font-size: var(--nmu-fs-body);
+  line-height: 1.55;
+  color: var(--nmu-text);
+  background: var(--nmu-bg);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--nmu-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .mono { font-family: var(--nmu-font-mono); font-size: 12px; }
+
+.kit-shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.kit-nav {
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--nmu-bg-subtle);
+  border-right: 1px solid var(--nmu-border);
+  padding: var(--nmu-space-5) var(--nmu-space-4);
+}
+.kit-nav .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.kit-nav .brand img { width: 36px; height: 36px; object-fit: contain; }
+.kit-nav .brand .t1 { font-family: Montserrat, var(--nmu-font-en); font-weight: 600; font-size: 11px; letter-spacing: 0.06em; line-height: 1.25; text-transform: uppercase; }
+.kit-nav .brand .t2 { font-size: 12px; color: var(--nmu-text-secondary); margin-top: 2px; }
+.kit-nav .sec { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--nmu-text-secondary); margin: 20px 0 8px; }
+.kit-nav a.nav-link {
+  display: block; padding: 6px 8px; margin: 2px 0;
+  color: var(--nmu-text); border-radius: var(--nmu-radius-sm);
+  text-decoration: none; font-size: 13px;
+}
+.kit-nav a.nav-link:hover { background: var(--nmu-bg-muted); text-decoration: none; }
+.kit-nav a.nav-link.active { background: var(--nmu-black); color: var(--nmu-white); }
+[data-theme="dark"] .kit-nav a.nav-link.active { background: var(--nmu-white); color: var(--nmu-black); }
+
+.kit-main { padding: var(--nmu-space-6) var(--nmu-space-7); max-width: 1080px; }
+.kit-topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-bottom: var(--nmu-space-6); padding-bottom: var(--nmu-space-4);
+  border-bottom: 1px solid var(--nmu-border);
+}
+.kit-topbar h1 { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0.01em; }
+.kit-topbar .sub { color: var(--nmu-text-secondary); font-size: 13px; margin-top: 4px; }
+.theme-toggle {
+  display: inline-flex; border: 1px solid var(--nmu-border-strong); background: var(--nmu-bg);
+}
+.theme-toggle button {
+  border: 0; background: transparent; color: var(--nmu-text);
+  padding: 8px 14px; font: inherit; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer;
+}
+.theme-toggle button[aria-pressed="true"] { background: var(--nmu-primary); color: var(--nmu-primary-fg); }
+
+.section { margin-bottom: var(--nmu-space-7); scroll-margin-top: 24px; }
+.section > h2 {
+  font-size: var(--nmu-fs-h2); font-weight: 600; margin: 0 0 8px;
+  letter-spacing: 0.01em; display: flex; align-items: baseline; gap: 12px;
+}
+.section > h2 .en { font-family: Montserrat, sans-serif; font-size: 14px; font-weight: 500; color: var(--nmu-text-secondary); letter-spacing: 0.04em; text-transform: uppercase; }
+.section > .lead { color: var(--nmu-text-secondary); margin: 0 0 20px; max-width: 64ch; }
+
+.panel {
+  border: 1px solid var(--nmu-border);
+  background: var(--nmu-bg);
+  padding: var(--nmu-space-5);
+  margin-bottom: var(--nmu-space-4);
+}
+.panel-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  margin-bottom: var(--nmu-space-4); padding-bottom: var(--nmu-space-3);
+  border-bottom: 1px solid var(--nmu-border);
+}
+.panel-head h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.panel-head .meta { color: var(--nmu-text-secondary); font-size: 12px; }
+.row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.row.stack { flex-direction: column; align-items: stretch; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 900px) {
+  .kit-shell { grid-template-columns: 1fr; }
+  .kit-nav { position: relative; height: auto; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .kit-main { padding: 24px 16px; }
+}
+
+/* Swatches */
+.swatch {
+  border: 1px solid var(--nmu-border);
+  overflow: hidden;
+}
+.swatch .chip { height: 72px; }
+.swatch .info { padding: 10px 12px; background: var(--nmu-bg); }
+.swatch .name { font-weight: 600; font-size: 13px; }
+.swatch .hex { font-family: var(--nmu-font-mono); font-size: 11px; color: var(--nmu-text-secondary); margin-top: 2px; }
+.swatch .role { font-size: 11px; color: var(--nmu-text-secondary); margin-top: 4px; }
+
+/* Type samples */
+.type-row {
+  display: grid; grid-template-columns: 140px 1fr; gap: 16px;
+  padding: 14px 0; border-bottom: 1px solid var(--nmu-border); align-items: baseline;
+}
+.type-row:last-child { border-bottom: 0; }
+.type-meta { font-size: 11px; color: var(--nmu-text-secondary); font-family: var(--nmu-font-mono); }
+.t-display { font-size: var(--nmu-fs-display); font-weight: 600; line-height: 1.2; letter-spacing: 0.02em; }
+.t-h1 { font-size: var(--nmu-fs-h1); font-weight: 600; line-height: 1.25; }
+.t-h2 { font-size: var(--nmu-fs-h2); font-weight: 600; line-height: 1.3; }
+.t-h3 { font-size: var(--nmu-fs-h3); font-weight: 600; line-height: 1.35; }
+.t-body-lg { font-size: var(--nmu-fs-body-lg); }
+.t-body { font-size: var(--nmu-fs-body); }
+.t-caption { font-size: var(--nmu-fs-caption); color: var(--nmu-text-secondary); }
+.t-label { font-size: var(--nmu-fs-label); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* Spacing */
+.space-demo { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+.space-item { text-align: center; }
+.space-item .bar { background: var(--nmu-navy); opacity: 0.85; }
+.space-item .lbl { margin-top: 6px; font-family: var(--nmu-font-mono); font-size: 11px; color: var(--nmu-text-secondary); }
+
+/* ——— Components ——— */
+.nmu-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--nmu-control-h-md); padding: 0 16px;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  letter-spacing: 0.02em; border: 1px solid transparent;
+  border-radius: var(--nmu-radius-sm); cursor: pointer;
+  transition: background var(--nmu-duration) var(--nmu-easing),
+              color var(--nmu-duration) var(--nmu-easing),
+              border-color var(--nmu-duration) var(--nmu-easing),
+              opacity var(--nmu-duration) var(--nmu-easing);
+  user-select: none; white-space: nowrap;
+}
+.nmu-btn:focus-visible { outline: 2px solid var(--nmu-focus-ring); outline-offset: 2px; }
+.nmu-btn:disabled, .nmu-btn[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.nmu-btn--sm { height: var(--nmu-control-h-sm); padding: 0 12px; font-size: 12px; }
+.nmu-btn--lg { height: var(--nmu-control-h-lg); padding: 0 20px; font-size: 14px; }
+.nmu-btn--primary { background: var(--nmu-primary); color: var(--nmu-primary-fg); border-color: var(--nmu-primary); }
+.nmu-btn--primary:hover { opacity: 0.88; }
+.nmu-btn--primary:active { opacity: 0.76; }
+.nmu-btn--secondary { background: transparent; color: var(--nmu-text); border-color: var(--nmu-border-strong); }
+.nmu-btn--secondary:hover { background: var(--nmu-bg-subtle); }
+.nmu-btn--secondary:active { background: var(--nmu-bg-muted); }
+.nmu-btn--ghost { background: transparent; color: var(--nmu-text); border-color: transparent; }
+.nmu-btn--ghost:hover { background: var(--nmu-bg-muted); }
+.nmu-btn--ghost:active { background: var(--nmu-surface-muted); }
+[data-theme="dark"] .nmu-btn--ghost:active { background: #2A2A2A; }
+.nmu-btn--danger { background: var(--nmu-danger); color: #fff; border-color: var(--nmu-danger); }
+.nmu-btn--danger:hover { filter: brightness(1.08); }
+.nmu-btn--danger:active { filter: brightness(0.92); }
+.nmu-btn--icon {
+  width: var(--nmu-control-h-md); padding: 0;
+  background: transparent; color: var(--nmu-text); border-color: var(--nmu-border-strong);
+}
+.nmu-btn--icon:hover { background: var(--nmu-bg-subtle); }
+.nmu-btn--icon.ghost { border-color: transparent; }
+.nmu-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* Forms */
+.nmu-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.nmu-label { font-size: 12px; font-weight: 500; letter-spacing: 0.02em; color: var(--nmu-text); }
+.nmu-hint { font-size: 12px; color: var(--nmu-text-secondary); }
+.nmu-input, .nmu-textarea, .nmu-select {
+  width: 100%; height: var(--nmu-control-h-md);
+  padding: 0 12px; font: inherit; font-size: 14px;
+  color: var(--nmu-text); background: var(--nmu-bg);
+  border: 1px solid var(--nmu-border-strong);
+  border-radius: var(--nmu-radius-sm);
+  transition: border-color var(--nmu-duration) var(--nmu-easing);
+}
+.nmu-textarea { height: auto; min-height: 96px; padding: 10px 12px; resize: vertical; }
+.nmu-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+[data-theme="dark"] .nmu-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E"); }
+.nmu-input::placeholder, .nmu-textarea::placeholder { color: var(--nmu-steel); }
+.nmu-input:hover, .nmu-textarea:hover, .nmu-select:hover { border-color: var(--nmu-steel); }
+.nmu-input:focus, .nmu-textarea:focus, .nmu-select:focus {
+  outline: 2px solid var(--nmu-focus-ring); outline-offset: 1px; border-color: var(--nmu-accent);
+}
+.nmu-input:disabled, .nmu-textarea:disabled, .nmu-select:disabled {
+  opacity: 0.45; cursor: not-allowed; background: var(--nmu-bg-subtle);
+}
+.nmu-input.is-error { border-color: var(--nmu-danger); }
+.nmu-error { font-size: 12px; color: var(--nmu-danger); }
+
+/* Checkbox / Radio / Switch */
+.nmu-check, .nmu-radio {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;
+}
+.nmu-check input, .nmu-radio input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nmu-check .box, .nmu-radio .box {
+  width: 16px; height: 16px; border: 1px solid var(--nmu-border-strong);
+  background: var(--nmu-bg); display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background var(--nmu-duration) var(--nmu-easing);
+}
+.nmu-radio .box { border-radius: 50%; }
+.nmu-check input:checked + .box { background: var(--nmu-primary); border-color: var(--nmu-primary); }
+.nmu-check input:checked + .box::after {
+  content: ""; width: 8px; height: 5px; border-left: 1.5px solid var(--nmu-primary-fg);
+  border-bottom: 1.5px solid var(--nmu-primary-fg); transform: rotate(-45deg) translateY(-1px);
+}
+.nmu-radio input:checked + .box { border-color: var(--nmu-accent); }
+.nmu-radio input:checked + .box::after {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--nmu-accent);
+}
+.nmu-check input:focus-visible + .box, .nmu-radio input:focus-visible + .box,
+.nmu-switch input:focus-visible + .track {
+  outline: 2px solid var(--nmu-focus-ring); outline-offset: 2px;
+}
+.nmu-check input:disabled + .box, .nmu-radio input:disabled + .box { opacity: 0.4; }
+.nmu-check:has(input:disabled), .nmu-radio:has(input:disabled) { opacity: 0.5; cursor: not-allowed; }
+
+.nmu-switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; }
+.nmu-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.nmu-switch .track {
+  width: 36px; height: 20px; border: 1px solid var(--nmu-border-strong);
+  background: var(--nmu-bg-muted); position: relative; border-radius: var(--nmu-radius-full);
+  transition: background var(--nmu-duration) var(--nmu-easing);
+}
+.nmu-switch .track::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
+  background: var(--nmu-text); border-radius: 50%;
+  transition: transform var(--nmu-duration) var(--nmu-easing);
+}
+.nmu-switch input:checked + .track { background: var(--nmu-accent); border-color: var(--nmu-accent); }
+.nmu-switch input:checked + .track::after { transform: translateX(16px); background: #fff; }
+.nmu-switch input:disabled + .track { opacity: 0.4; }
+
+/* Tabs / Segmented */
+.nmu-tabs { display: flex; border-bottom: 1px solid var(--nmu-border); gap: 0; }
+.nmu-tab {
+  appearance: none; background: none; border: 0; border-bottom: 2px solid transparent;
+  padding: 10px 16px; font: inherit; font-size: 13px; font-weight: 500;
+  color: var(--nmu-text-secondary); cursor: pointer; margin-bottom: -1px;
+}
+.nmu-tab:hover { color: var(--nmu-text); }
+.nmu-tab[aria-selected="true"] { color: var(--nmu-text); border-bottom-color: var(--nmu-accent); }
+.nmu-tab:focus-visible { outline: 2px solid var(--nmu-focus-ring); outline-offset: -2px; }
+.nmu-tab:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.nmu-seg {
+  display: inline-flex; border: 1px solid var(--nmu-border-strong); background: var(--nmu-bg);
+}
+.nmu-seg button {
+  appearance: none; border: 0; background: transparent; color: var(--nmu-text);
+  padding: 8px 14px; font: inherit; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.02em; cursor: pointer; border-right: 1px solid var(--nmu-border-strong);
+}
+.nmu-seg button:last-child { border-right: 0; }
+.nmu-seg button[aria-pressed="true"] { background: var(--nmu-primary); color: var(--nmu-primary-fg); }
+.nmu-seg button:hover:not([aria-pressed="true"]) { background: var(--nmu-bg-subtle); }
+.nmu-seg button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* Card / List / Table */
+.nmu-card {
+  border: 1px solid var(--nmu-border); background: var(--nmu-bg); padding: 20px;
+}
+.nmu-card h4 { margin: 0 0 8px; font-size: 16px; font-weight: 600; }
+.nmu-card p { margin: 0; color: var(--nmu-text-secondary); font-size: 13px; }
+.nmu-card .card-foot { margin-top: 16px; display: flex; gap: 8px; }
+.nmu-card--interactive { cursor: pointer; transition: border-color var(--nmu-duration) var(--nmu-easing); }
+.nmu-card--interactive:hover { border-color: var(--nmu-accent); }
+
+.nmu-list { border: 1px solid var(--nmu-border); }
+.nmu-list-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border-bottom: 1px solid var(--nmu-border); background: var(--nmu-bg);
+}
+.nmu-list-item:last-child { border-bottom: 0; }
+.nmu-list-item:hover { background: var(--nmu-bg-subtle); }
+.nmu-list-item .title { font-weight: 500; font-size: 14px; }
+.nmu-list-item .desc { font-size: 12px; color: var(--nmu-text-secondary); }
+.nmu-list-item .trail { margin-left: auto; color: var(--nmu-text-secondary); font-size: 12px; }
+
+.nmu-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.nmu-table th, .nmu-table td {
+  text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--nmu-border);
+}
+.nmu-table th {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--nmu-text-secondary); background: var(--nmu-bg-subtle); border-bottom-color: var(--nmu-border-strong);
+}
+.nmu-table tr:hover td { background: var(--nmu-bg-subtle); }
+.nmu-table tr.is-selected td { background: color-mix(in srgb, var(--nmu-accent) 12%, var(--nmu-bg)); }
+
+/* Nav / Sidebar / Breadcrumb */
+.nmu-navbar {
+  display: flex; align-items: center; gap: 24px; height: 56px; padding: 0 20px;
+  border: 1px solid var(--nmu-border); background: var(--nmu-bg);
+}
+.nmu-navbar .logo { display: flex; align-items: center; height: 28px; }
+.nmu-navbar .logo img { height: 28px; width: auto; }
+.nmu-navbar .links { display: flex; gap: 4px; flex: 1; }
+.nmu-navbar .links a {
+  padding: 6px 10px; color: var(--nmu-text); font-size: 13px; font-weight: 500;
+  text-decoration: none; border-radius: var(--nmu-radius-sm);
+}
+.nmu-navbar .links a:hover { background: var(--nmu-bg-muted); }
+.nmu-navbar .links a[aria-current="page"] { color: var(--nmu-accent); }
+.nmu-navbar--dark { background: #000; border-color: #2A2A2A; color: #fff; }
+.nmu-navbar--dark .links a { color: #fff; }
+.nmu-navbar--dark .links a:hover { background: #1A1A1A; }
+.nmu-navbar--dark .links a[aria-current="page"] { color: #4A7BA7; }
+
+.nmu-sidebar {
+  width: 220px; border: 1px solid var(--nmu-border); background: var(--nmu-bg-subtle); padding: 8px;
+}
+.nmu-side-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  font-size: 13px; color: var(--nmu-text); text-decoration: none;
+  border-radius: var(--nmu-radius-sm); cursor: pointer; border: 0; background: none; width: 100%; text-align: left; font-family: inherit;
+}
+.nmu-side-item:hover { background: var(--nmu-bg-muted); }
+.nmu-side-item[aria-current="page"] { background: var(--nmu-primary); color: var(--nmu-primary-fg); }
+.nmu-side-item .ico { width: 16px; height: 16px; opacity: 0.8; }
+
+.nmu-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; }
+.nmu-breadcrumb a { color: var(--nmu-text-secondary); text-decoration: none; }
+.nmu-breadcrumb a:hover { color: var(--nmu-accent); text-decoration: underline; }
+.nmu-breadcrumb .sep { color: var(--nmu-steel); }
+.nmu-breadcrumb [aria-current="page"] { color: var(--nmu-text); font-weight: 500; }
+
+/* Badge / Tag / Chip */
+.nmu-badge {
+  display: inline-flex; align-items: center; height: 20px; padding: 0 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+  background: var(--nmu-bg-muted); color: var(--nmu-text); border-radius: var(--nmu-radius-sm);
+}
+.nmu-badge--accent { background: color-mix(in srgb, var(--nmu-accent) 18%, transparent); color: var(--nmu-accent); }
+.nmu-badge--danger { background: color-mix(in srgb, var(--nmu-danger) 16%, transparent); color: var(--nmu-danger); }
+.nmu-badge--success { background: color-mix(in srgb, var(--nmu-success) 16%, transparent); color: var(--nmu-success); }
+.nmu-tag {
+  display: inline-flex; align-items: center; height: 24px; padding: 0 8px;
+  font-size: 12px; border: 1px solid var(--nmu-border-strong); background: var(--nmu-bg);
+  border-radius: var(--nmu-radius-sm);
+}
+.nmu-chip {
+  display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px;
+  font-size: 12px; background: var(--nmu-bg-muted); border-radius: var(--nmu-radius-full);
+  border: 1px solid transparent;
+}
+.nmu-chip button {
+  appearance: none; border: 0; background: none; cursor: pointer; padding: 0;
+  color: var(--nmu-text-secondary); font-size: 14px; line-height: 1;
+}
+.nmu-chip--selected { border-color: var(--nmu-accent); background: color-mix(in srgb, var(--nmu-accent) 12%, var(--nmu-bg)); color: var(--nmu-accent); }
+
+/* Toast / Banner / Modal */
+.nmu-toast {
+  display: flex; align-items: flex-start; gap: 12px; max-width: 360px;
+  padding: 12px 14px; border: 1px solid var(--nmu-border-strong); background: var(--nmu-bg);
+}
+.nmu-toast .body { flex: 1; font-size: 13px; }
+.nmu-toast .title { font-weight: 600; margin-bottom: 2px; }
+.nmu-toast--success { border-left: 3px solid var(--nmu-success); }
+.nmu-toast--danger { border-left: 3px solid var(--nmu-danger); }
+.nmu-toast--info { border-left: 3px solid var(--nmu-accent); }
+
+.nmu-banner {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border: 1px solid var(--nmu-border); background: var(--nmu-bg-subtle); font-size: 13px;
+}
+.nmu-banner--accent { border-color: var(--nmu-accent); background: color-mix(in srgb, var(--nmu-accent) 10%, var(--nmu-bg)); }
+.nmu-banner--danger { border-color: var(--nmu-danger); background: color-mix(in srgb, var(--nmu-danger) 8%, var(--nmu-bg)); }
+.nmu-banner .actions { margin-left: auto; display: flex; gap: 8px; }
+
+.nmu-modal-backdrop {
+  border: 1px dashed var(--nmu-border); background: color-mix(in srgb, var(--nmu-black) 40%, transparent);
+  padding: 32px; display: flex; align-items: center; justify-content: center; min-height: 220px;
+}
+.nmu-modal {
+  width: 100%; max-width: 420px; background: var(--nmu-bg); border: 1px solid var(--nmu-border-strong);
+  padding: 24px;
+}
+.nmu-modal h4 { margin: 0 0 8px; font-size: 18px; font-weight: 600; }
+.nmu-modal p { margin: 0 0 20px; color: var(--nmu-text-secondary); font-size: 14px; }
+.nmu-modal .actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* Empty / Loading / Avatar */
+.nmu-empty {
+  border: 1px solid var(--nmu-border); padding: 48px 24px; text-align: center; background: var(--nmu-bg);
+}
+.nmu-empty img { width: 48px; height: 48px; opacity: 0.35; margin-bottom: 12px; }
+.nmu-empty h4 { margin: 0 0 6px; font-size: 16px; }
+.nmu-empty p { margin: 0 0 16px; color: var(--nmu-text-secondary); font-size: 13px; }
+
+.nmu-spinner {
+  width: 24px; height: 24px; border: 2px solid var(--nmu-border);
+  border-top-color: var(--nmu-accent); border-radius: 50%;
+  animation: nmu-spin 0.7s linear infinite;
+}
+.nmu-spinner--lg { width: 36px; height: 36px; }
+@keyframes nmu-spin { to { transform: rotate(360deg); } }
+
+.nmu-avatar {
+  width: 40px; height: 40px; border: 1px solid var(--nmu-border);
+  background: var(--nmu-bg); display: inline-flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.nmu-avatar img { width: 70%; height: 70%; object-fit: contain; }
+.nmu-avatar--sm { width: 28px; height: 28px; }
+.nmu-avatar--lg { width: 56px; height: 56px; }
+.nmu-avatar--round { border-radius: 50%; }
+.nmu-avatar--dark { background: #000; border-color: #2A2A2A; }
+
+.state-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.state-cell { text-align: center; }
+.state-cell .lbl { font-size: 11px; color: var(--nmu-text-secondary); margin-top: 6px; font-family: var(--nmu-font-mono); }
+
+.callout {
+  border-left: 3px solid var(--nmu-accent); padding: 12px 16px;
+  background: var(--nmu-bg-subtle); font-size: 13px; margin-bottom: 16px;
+}
+.callout strong { font-weight: 600; }
+
+.logo-preview {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.logo-preview .lp {
+  border: 1px solid var(--nmu-border); padding: 24px; display: flex; align-items: center; justify-content: center;
+  min-width: 200px; min-height: 100px;
+}
+.logo-preview .lp.light { background: #fff; }
+.logo-preview .lp.dark { background: #000; }
+.logo-preview .lp img.lockup { height: 48px; width: auto; }
+.logo-preview .lp img.mark { height: 56px; width: auto; }
+
+.footer-note {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--nmu-border);
+  font-size: 12px; color: var(--nmu-text-secondary);
+}
+
+@media print {
+  .kit-nav, .theme-toggle, .kit-topbar { display: none !important; }
+  .kit-shell { display: block; }
+  .kit-main { max-width: none; padding: 0; }
+  .panel { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="kit-shell">
+  <aside class="kit-nav" aria-label="目录">
+    <div class="brand">
+      <img src="assets/mark-black.png" alt="NMU mark" id="navMark" />
+      <div>
+        <div class="t1">New Materials<br/>Union</div>
+        <div class="t2">新材联 · UI Kit v1</div>
+      </div>
+    </div>
+    <div class="sec">基础 Foundations</div>
+    <a class="nav-link" href="#intro">概述 Overview</a>
+    <a class="nav-link" href="#logo">Logo 用法</a>
+    <a class="nav-link" href="#colour">色彩 Colour</a>
+    <a class="nav-link" href="#type">字体 Type</a>
+    <a class="nav-link" href="#spacing">间距 Spacing</a>
+    <a class="nav-link" href="#radius">圆角 / 层级</a>
+    <div class="sec">组件 Components</div>
+    <a class="nav-link" href="#buttons">按钮 Button</a>
+    <a class="nav-link" href="#inputs">表单 Inputs</a>
+    <a class="nav-link" href="#selection">选择 Selection</a>
+    <a class="nav-link" href="#tabs">选项卡 Tabs</a>
+    <a class="nav-link" href="#data">卡片 / 列表 / 表</a>
+    <a class="nav-link" href="#nav">导航 Nav</a>
+    <a class="nav-link" href="#badges">徽章 Badge</a>
+    <a class="nav-link" href="#feedback">反馈 Feedback</a>
+    <a class="nav-link" href="#empty">空态 / 加载 / 头像</a>
+    <div class="sec">主题 Theme</div>
+    <a class="nav-link" href="#dark">深色模式 Dark</a>
+    <a class="nav-link" href="#tokens">Tokens</a>
+  </aside>
+
+  <main class="kit-main">
+    <div class="kit-topbar">
+      <div>
+        <h1>UI 设计组件库 <span style="font-weight:500;color:var(--nmu-text-secondary);font-size:14px;letter-spacing:0.04em;">COMPONENT KIT</span></h1>
+        <div class="sub">NEW MATERIALS UNION / 新材联 · Brand VI Scheme A · 工业蓝图风格</div>
+      </div>
+      <div class="theme-toggle" role="group" aria-label="主题切换">
+        <button type="button" id="themeLight" aria-pressed="true">浅色 Light</button>
+        <button type="button" id="themeDark" aria-pressed="false">深色 Dark</button>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="section" id="intro">
+      <h2>概述 <span class="en">Overview</span></h2>
+      <p class="lead">面向 AI 赋能建筑产业产品的界面组件规范。视觉语言与方案 A Logo 一致：高对比黑白、克制扁平、1px 描边；Blueprint Navy 仅作强调色（链接、焦点环、选中态），绝不填充 Logo。</p>
+      <div class="callout">
+        <strong>硬性约束 / Hard rules：</strong> Logo 几何不可改；填色仅黑/白；辅色 <code>#1E3A5F</code> 仅点缀；字体 EN Montserrat/Inter · ZH Noto Sans SC；避免圆角卡片阴影的「通用 Material」感。
+      </div>
+      <div class="logo-preview">
+        <div class="lp light"><img class="lockup" src="assets/lockup-light.png" alt="Lockup light" /></div>
+        <div class="lp dark"><img class="lockup" src="assets/lockup-dark.png" alt="Lockup dark" /></div>
+        <div class="lp light"><img class="mark" src="assets/mark-black.png" alt="Mark black" /></div>
+        <div class="lp dark"><img class="mark" src="assets/mark-white.png" alt="Mark white" /></div>
+      </div>
+    </section>
+
+    <!-- LOGO -->
+    <section class="section" id="logo">
+      <h2>Logo 用法 <span class="en">Scheme A</span></h2>
+      <p class="lead">导航栏使用横排锁或单独 Mark；头像使用 Avatar 裁切（Mark 居中，留白充足）。深底用白标，浅底用黑标。</p>
+      <div class="panel" data-capture="nav-light">
+        <div class="panel-head"><h3>导航栏 · 浅色 Nav Light</h3><span class="meta">Scheme A lockup</span></div>
+        <nav class="nmu-navbar" aria-label="示例导航浅色">
+          <a class="logo" href="#"><img src="assets/lockup-light.png" alt="NEW MATERIALS UNION" /></a>
+          <div class="links">
+            <a href="#" aria-current="page">产品</a>
+            <a href="#">方案</a>
+            <a href="#">文档</a>
+            <a href="#">关于</a>
+          </div>
+          <button class="nmu-btn nmu-btn--primary nmu-btn--sm" type="button">开始使用</button>
+        </nav>
+      </div>
+      <div class="panel" data-capture="nav-dark">
+        <div class="panel-head"><h3>导航栏 · 深色 Nav Dark</h3><span class="meta">White lockup on black</span></div>
+        <nav class="nmu-navbar nmu-navbar--dark" aria-label="示例导航深色">
+          <a class="logo" href="#"><img src="assets/lockup-dark.png" alt="NEW MATERIALS UNION" /></a>
+          <div class="links">
+            <a href="#" aria-current="page">产品</a>
+            <a href="#">方案</a>
+            <a href="#">文档</a>
+            <a href="#">关于</a>
+          </div>
+          <button class="nmu-btn nmu-btn--primary nmu-btn--sm" type="button" style="background:#fff;color:#000;border-color:#fff;">开始使用</button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- COLOUR -->
+    <section class="section" id="colour">
+      <h2>色彩 <span class="en">Colour Tokens</span></h2>
+      <p class="lead">语义色映射到品牌色。主操作使用黑/白（高对比），交互强调使用 Navy。</p>
+      <div class="grid-3" style="margin-bottom:16px;">
+        <div class="swatch"><div class="chip" style="background:#000"></div><div class="info"><div class="name">Black</div><div class="hex">#000000</div><div class="role">主色 · Logo / Primary</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#fff;border-bottom:1px solid #E8EAED"></div><div class="info"><div class="name">White</div><div class="hex">#FFFFFF</div><div class="role">主色 · Logo / Surface</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1E3A5F"></div><div class="info"><div class="name">Blueprint Navy</div><div class="hex">#1E3A5F</div><div class="role">辅色 · 链接 / Focus / 选中</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#8A9199"></div><div class="info"><div class="name">Steel</div><div class="hex">#8A9199</div><div class="role">次要文字 · 图标弱化</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F5F6F7"></div><div class="info"><div class="name">Surface</div><div class="hex">#F5F6F7</div><div class="role">浅底 · 区块背景</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E8EAED"></div><div class="info"><div class="name">Surface Muted</div><div class="hex">#E8EAED</div><div class="role">边框 / 分隔</div></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>语义角色 Semantic Roles</h3><span class="meta">CSS variables</span></div>
+        <table class="nmu-table">
+          <thead><tr><th>角色 Role</th><th>Token</th><th>浅色 Light</th><th>深色 Dark</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>Background</td><td><code>--nmu-bg</code></td><td>#FFFFFF</td><td>#000000</td><td>页面底</td></tr>
+            <tr><td>Text</td><td><code>--nmu-text</code></td><td>#000000</td><td>#FFFFFF</td><td>正文</td></tr>
+            <tr><td>Border</td><td><code>--nmu-border</code></td><td>#E8EAED</td><td>#2A2A2A</td><td>分隔线</td></tr>
+            <tr><td>Primary</td><td><code>--nmu-primary</code></td><td>#000000</td><td>#FFFFFF</td><td>主按钮</td></tr>
+            <tr class="is-selected"><td>Accent</td><td><code>--nmu-accent</code></td><td>#1E3A5F</td><td>#4A7BA7</td><td>链接 / Focus / 选中</td></tr>
+            <tr><td>Danger</td><td><code>--nmu-danger</code></td><td>#B42318</td><td>#F04438</td><td>错误 / 删除</td></tr>
+            <tr><td>Success</td><td><code>--nmu-success</code></td><td>#027A48</td><td>#32D583</td><td>成功反馈</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="section" id="type">
+      <h2>字体 <span class="en">Type Scale</span></h2>
+      <p class="lead">EN：Montserrat / Inter · ZH：Noto Sans SC。工业克制，标题半粗，正文常规。Label 大写 + 字距。</p>
+      <div class="panel">
+        <div class="type-row"><div class="type-meta">Display<br/>40 / 600</div><div class="t-display">新材联 AI 建筑</div></div>
+        <div class="type-row"><div class="type-meta">H1<br/>32 / 600</div><div class="t-h1">产品与解决方案</div></div>
+        <div class="type-row"><div class="type-meta">H2<br/>24 / 600</div><div class="t-h2">Blueprint clarity</div></div>
+        <div class="type-row"><div class="type-meta">H3<br/>18 / 600</div><div class="t-h3">章节标题 Section title</div></div>
+        <div class="type-row"><div class="type-meta">Body LG<br/>16 / 400</div><div class="t-body-lg">面向建筑产业的 AI 工作流与材料数据平台。</div></div>
+        <div class="type-row"><div class="type-meta">Body<br/>14 / 400</div><div class="t-body">默认正文。用于表单说明、列表描述与对话框内容。保持高对比可读性。</div></div>
+        <div class="type-row"><div class="type-meta">Caption<br/>12 / 400</div><div class="t-caption">辅助说明 · Helper text · 时间戳 2026-10-11</div></div>
+        <div class="type-row"><div class="type-meta">Label<br/>12 / 500</div><div class="t-label">Status · Active</div></div>
+      </div>
+    </section>
+
+    <!-- SPACING -->
+    <section class="section" id="spacing">
+      <h2>间距 <span class="en">Spacing</span></h2>
+      <p class="lead">4px 基准：4 / 8 / 12 / 16 / 24 / 32 / 48。</p>
+      <div class="panel">
+        <div class="space-demo">
+          <div class="space-item"><div class="bar" style="width:4px;height:4px"></div><div class="lbl">4</div></div>
+          <div class="space-item"><div class="bar" style="width:8px;height:8px"></div><div class="lbl">8</div></div>
+          <div class="space-item"><div class="bar" style="width:12px;height:12px"></div><div class="lbl">12</div></div>
+          <div class="space-item"><div class="bar" style="width:16px;height:16px"></div><div class="lbl">16</div></div>
+          <div class="space-item"><div class="bar" style="width:24px;height:24px"></div><div class="lbl">24</div></div>
+          <div class="space-item"><div class="bar" style="width:32px;height:32px"></div><div class="lbl">32</div></div>
+          <div class="space-item"><div class="bar" style="width:48px;height:48px"></div><div class="lbl">48</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RADIUS -->
+    <section class="section" id="radius">
+      <h2>圆角 / 层级 <span class="en">Radius & Elevation</span></h2>
+      <p class="lead">优先扁平 + 1px 边框。圆角极小（0–4px）。不使用大面积柔和阴影。</p>
+      <div class="grid-3">
+        <div class="panel" style="border-radius:0"><strong>none 0</strong><p class="t-caption" style="margin-top:8px">模态 / 表格 / 导航</p></div>
+        <div class="panel" style="border-radius:2px"><strong>sm 2px</strong><p class="t-caption" style="margin-top:8px">按钮 / 输入框</p></div>
+        <div class="panel" style="border-radius:4px"><strong>md 4px</strong><p class="t-caption" style="margin-top:8px">徽章 / 轻量卡片</p></div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="section" id="buttons">
+      <h2>按钮 <span class="en">Button</span></h2>
+      <p class="lead">主按钮黑/白填充；次级描边；幽灵透明；危险红。Hover 降低不透明度或浅底，Active 加深，Disabled 40% 透明。</p>
+      <div class="panel" data-capture="buttons">
+        <div class="panel-head"><h3>变体 Variants</h3><span class="meta">default / hover / disabled</span></div>
+        <div class="row" style="margin-bottom:16px;">
+          <button class="nmu-btn nmu-btn--primary" type="button">主要 Primary</button>
+          <button class="nmu-btn nmu-btn--secondary" type="button">次要 Secondary</button>
+          <button class="nmu-btn nmu-btn--ghost" type="button">幽灵 Ghost</button>
+          <button class="nmu-btn nmu-btn--danger" type="button">危险 Danger</button>
+          <button class="nmu-btn nmu-btn--primary" type="button" disabled>禁用 Disabled</button>
+        </div>
+        <div class="row" style="margin-bottom:16px;">
+          <button class="nmu-btn nmu-btn--primary nmu-btn--sm" type="button">小 Sm</button>
+          <button class="nmu-btn nmu-btn--primary" type="button">中 Md</button>
+          <button class="nmu-btn nmu-btn--primary nmu-btn--lg" type="button">大 Lg</button>
+        </div>
+        <div class="row">
+          <button class="nmu-btn nmu-btn--icon" type="button" aria-label="设置">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.2 3.2l1.4 1.4M11.4 11.4l1.4 1.4M3.2 12.8l1.4-1.4M11.4 4.6l1.4-1.4"/></svg>
+          </button>
+          <button class="nmu-btn nmu-btn--icon ghost" type="button" aria-label="更多">
+            <svg viewBox="0 0 16 16" fill="currentColor"><circle cx="3" cy="8" r="1.2"/><circle cx="8" cy="8" r="1.2"/><circle cx="13" cy="8" r="1.2"/></svg>
+          </button>
+          <button class="nmu-btn nmu-btn--secondary" type="button">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            继续
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUTS -->
+    <section class="section" id="inputs">
+      <h2>表单 <span class="en">Input · Textarea · Select</span></h2>
+      <div class="panel" data-capture="inputs">
+        <div class="grid-2">
+          <div>
+            <div class="nmu-field">
+              <label class="nmu-label" for="i1">项目名称 Project name</label>
+              <input class="nmu-input" id="i1" type="text" placeholder="例如：武汉材料库" />
+              <span class="nmu-hint">用于工作区显示名称</span>
+            </div>
+            <div class="nmu-field">
+              <label class="nmu-label" for="i2">错误态 Error</label>
+              <input class="nmu-input is-error" id="i2" type="text" value="无效编码" />
+              <span class="nmu-error">请输入有效的材料编码</span>
+            </div>
+            <div class="nmu-field">
+              <label class="nmu-label" for="i3">禁用 Disabled</label>
+              <input class="nmu-input" id="i3" type="text" value="只读字段" disabled />
+            </div>
+          </div>
+          <div>
+            <div class="nmu-field">
+              <label class="nmu-label" for="s1">类型 Select</label>
+              <select class="nmu-select" id="s1">
+                <option>结构材料</option>
+                <option>饰面材料</option>
+                <option>机电设备</option>
+              </select>
+            </div>
+            <div class="nmu-field">
+              <label class="nmu-label" for="t1">备注 Textarea</label>
+              <textarea class="nmu-textarea" id="t1" placeholder="补充说明…"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTION -->
+    <section class="section" id="selection">
+      <h2>选择控件 <span class="en">Checkbox · Radio · Switch</span></h2>
+      <div class="panel" data-capture="selection">
+        <div class="grid-3">
+          <div class="row stack">
+            <label class="nmu-check"><input type="checkbox" checked /><span class="box"></span>已启用 AI 建议</label>
+            <label class="nmu-check"><input type="checkbox" /><span class="box"></span>同步到云端</label>
+            <label class="nmu-check"><input type="checkbox" disabled /><span class="box"></span>禁用项</label>
+          </div>
+          <div class="row stack">
+            <label class="nmu-radio"><input type="radio" name="r1" checked /><span class="box"></span>标准模式</label>
+            <label class="nmu-radio"><input type="radio" name="r1" /><span class="box"></span>高级模式</label>
+            <label class="nmu-radio"><input type="radio" name="r1" disabled /><span class="box"></span>不可用</label>
+          </div>
+          <div class="row stack">
+            <label class="nmu-switch"><input type="checkbox" checked /><span class="track"></span>深色预览</label>
+            <label class="nmu-switch"><input type="checkbox" /><span class="track"></span>自动保存</label>
+            <label class="nmu-switch"><input type="checkbox" disabled /><span class="track"></span>禁用开关</label>
+          </div>
+        </div>
+        <p class="t-caption" style="margin-top:16px;margin-bottom:0">选中强调使用 <strong style="color:var(--nmu-accent)">Accent Navy</strong>；主复选框填充使用 Primary（黑/白）。</p>
+      </div>
+    </section>
+
+    <!-- TABS -->
+    <section class="section" id="tabs">
+      <h2>选项卡 / 分段 <span class="en">Tabs · Segmented</span></h2>
+      <div class="panel" data-capture="tabs">
+        <div class="nmu-tabs" role="tablist" style="margin-bottom:20px;">
+          <button class="nmu-tab" role="tab" aria-selected="true" type="button">概览</button>
+          <button class="nmu-tab" role="tab" aria-selected="false" type="button">材料</button>
+          <button class="nmu-tab" role="tab" aria-selected="false" type="button">模型</button>
+          <button class="nmu-tab" role="tab" aria-selected="false" type="button" disabled>权限</button>
+        </div>
+        <div class="nmu-seg" role="group" aria-label="视图">
+          <button type="button" aria-pressed="true">列表</button>
+          <button type="button" aria-pressed="false">网格</button>
+          <button type="button" aria-pressed="false">蓝图</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA -->
+    <section class="section" id="data">
+      <h2>卡片 / 列表 / 表 <span class="en">Card · List · Table</span></h2>
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="nmu-card" data-capture="card">
+          <h4>材料知识库</h4>
+          <p>结构化建筑材料数据与 AI 检索。支持规格、供应商与合规标签。</p>
+          <div class="card-foot">
+            <button class="nmu-btn nmu-btn--primary nmu-btn--sm" type="button">打开</button>
+            <button class="nmu-btn nmu-btn--ghost nmu-btn--sm" type="button">详情</button>
+          </div>
+        </div>
+        <div class="nmu-card nmu-card--interactive">
+          <h4>工地协同 Workspace</h4>
+          <p>跨团队任务、图纸批注与进度同步。Hover 边框转为 Accent。</p>
+          <div class="card-foot">
+            <span class="nmu-badge nmu-badge--accent">Beta</span>
+            <span class="nmu-badge nmu-badge--success">Online</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="padding:0;overflow:hidden;" data-capture="list">
+        <div class="nmu-list">
+          <div class="nmu-list-item">
+            <div class="nmu-avatar nmu-avatar--sm"><img src="assets/mark-black.png" alt="" /></div>
+            <div><div class="title">混凝土配合比优化</div><div class="desc">AI 建议 · 已更新</div></div>
+            <span class="trail">2h</span>
+          </div>
+          <div class="nmu-list-item">
+            <div class="nmu-avatar nmu-avatar--sm"><img src="assets/mark-black.png" alt="" /></div>
+            <div><div class="title">幕墙节点库</div><div class="desc">12 个新条目</div></div>
+            <span class="trail">昨天</span>
+          </div>
+          <div class="nmu-list-item">
+            <div class="nmu-avatar nmu-avatar--sm"><img src="assets/mark-black.png" alt="" /></div>
+            <div><div class="title">供应商合规审查</div><div class="desc">待处理</div></div>
+            <span class="nmu-badge nmu-badge--danger" style="margin-left:auto">3</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="padding:0;overflow:hidden;margin-top:16px;" data-capture="table">
+        <table class="nmu-table">
+          <thead><tr><th>编码</th><th>名称</th><th>类别</th><th>状态</th></tr></thead>
+          <tbody>
+            <tr><td>NM-1042</td><td>高强度锚栓</td><td>紧固件</td><td><span class="nmu-badge nmu-badge--success">在库</span></td></tr>
+            <tr class="is-selected"><td>NM-2088</td><td>防火岩棉板</td><td>保温</td><td><span class="nmu-badge nmu-badge--accent">选型中</span></td></tr>
+            <tr><td>NM-3310</td><td>铝合金型材</td><td>结构</td><td><span class="nmu-badge">草稿</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <section class="section" id="nav">
+      <h2>导航 <span class="en">Sidebar · Breadcrumb</span></h2>
+      <div class="grid-2">
+        <div class="panel" data-capture="sidebar">
+          <div class="panel-head"><h3>侧栏项 Sidebar</h3></div>
+          <div class="nmu-sidebar">
+            <button class="nmu-side-item" aria-current="page" type="button"><span class="ico">▣</span>工作台</button>
+            <button class="nmu-side-item" type="button"><span class="ico">▤</span>材料库</button>
+            <button class="nmu-side-item" type="button"><span class="ico">◈</span>AI 助手</button>
+            <button class="nmu-side-item" type="button"><span class="ico">◎</span>设置</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>面包屑 Breadcrumb</h3></div>
+          <nav class="nmu-breadcrumb" aria-label="面包屑">
+            <a href="#">首页</a><span class="sep">/</span>
+            <a href="#">项目</a><span class="sep">/</span>
+            <a href="#">武汉展示中心</a><span class="sep">/</span>
+            <span aria-current="page">材料清单</span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="section" id="badges">
+      <h2>徽章 / 标签 / 芯片 <span class="en">Badge · Tag · Chip</span></h2>
+      <div class="panel" data-capture="badges">
+        <div class="row" style="margin-bottom:16px;">
+          <span class="nmu-badge">Default</span>
+          <span class="nmu-badge nmu-badge--accent">Accent</span>
+          <span class="nmu-badge nmu-badge--success">Success</span>
+          <span class="nmu-badge nmu-badge--danger">Danger</span>
+        </div>
+        <div class="row" style="margin-bottom:16px;">
+          <span class="nmu-tag">结构</span>
+          <span class="nmu-tag">BIM</span>
+          <span class="nmu-tag">合规</span>
+        </div>
+        <div class="row">
+          <span class="nmu-chip">过滤器 <button type="button" aria-label="移除">×</button></span>
+          <span class="nmu-chip nmu-chip--selected">已选 · 钢材</span>
+          <span class="nmu-chip">混凝土</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section class="section" id="feedback">
+      <h2>反馈 <span class="en">Toast · Banner · Modal</span></h2>
+      <div class="row" style="margin-bottom:16px;align-items:stretch;">
+        <div class="nmu-toast nmu-toast--info" data-capture="toast">
+          <div class="body"><div class="title">已同步</div>材料清单已推送到协作空间。</div>
+          <button class="nmu-btn nmu-btn--ghost nmu-btn--sm" type="button">关闭</button>
+        </div>
+        <div class="nmu-toast nmu-toast--success">
+          <div class="body"><div class="title">导出完成</div>PDF 已生成。</div>
+        </div>
+        <div class="nmu-toast nmu-toast--danger">
+          <div class="body"><div class="title">上传失败</div>请检查网络后重试。</div>
+        </div>
+      </div>
+      <div class="nmu-banner nmu-banner--accent" style="margin-bottom:16px;" data-capture="banner">
+        <strong>系统通知</strong>
+        <span>新版本组件库 v1 已发布，请团队统一引用 tokens。</span>
+        <div class="actions"><button class="nmu-btn nmu-btn--secondary nmu-btn--sm" type="button">查看</button></div>
+      </div>
+      <div class="nmu-banner nmu-banner--danger" style="margin-bottom:16px;">
+        <strong>权限不足</strong>
+        <span>当前角色无法删除生产环境配置。</span>
+      </div>
+      <div class="nmu-modal-backdrop" data-capture="modal">
+        <div class="nmu-modal" role="dialog" aria-labelledby="md1">
+          <h4 id="md1">确认删除项目？</h4>
+          <p>此操作不可撤销。相关材料关联将被解除，历史记录保留 30 天。</p>
+          <div class="actions">
+            <button class="nmu-btn nmu-btn--ghost" type="button">取消</button>
+            <button class="nmu-btn nmu-btn--danger" type="button">删除</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPTY / LOADING / AVATAR -->
+    <section class="section" id="empty">
+      <h2>空态 / 加载 / 头像 <span class="en">Empty · Spinner · Avatar</span></h2>
+      <div class="grid-2">
+        <div class="nmu-empty" data-capture="empty">
+          <img src="assets/mark-black.png" alt="" />
+          <h4>暂无材料</h4>
+          <p>导入清单或从知识库添加第一条记录。</p>
+          <button class="nmu-btn nmu-btn--primary nmu-btn--sm" type="button">添加材料</button>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>加载 Spinner</h3></div>
+          <div class="row">
+            <div class="nmu-spinner" aria-label="加载中"></div>
+            <div class="nmu-spinner nmu-spinner--lg" aria-label="加载中"></div>
+            <span class="t-caption">边框色用 border，顶色用 Accent</span>
+          </div>
+          <div class="panel-head" style="margin-top:24px;"><h3>头像 Avatar · Mark 裁切</h3></div>
+          <p class="t-caption" style="margin-top:0;">使用 Avatar 资产或 Mark 居中裁切（约 70% 内容区），浅底黑标 / 深底白标。可方可圆。</p>
+          <div class="row" style="margin-top:12px;" data-capture="avatars">
+            <div class="nmu-avatar nmu-avatar--sm"><img src="assets/mark-black.png" alt="" /></div>
+            <div class="nmu-avatar"><img src="assets/mark-black.png" alt="" /></div>
+            <div class="nmu-avatar nmu-avatar--lg"><img src="assets/mark-black.png" alt="" /></div>
+            <div class="nmu-avatar nmu-avatar--round"><img src="assets/mark-black.png" alt="" /></div>
+            <div class="nmu-avatar nmu-avatar--dark nmu-avatar--lg"><img src="assets/mark-white.png" alt="" /></div>
+            <div class="nmu-avatar nmu-avatar--dark nmu-avatar--round"><img src="assets/avatar-white.png" alt="" style="width:100%;height:100%;object-fit:cover;" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DARK -->
+    <section class="section" id="dark">
+      <h2>深色模式 <span class="en">Dark Mode</span></h2>
+      <p class="lead">使用页面右上角切换，或给容器加 <code>data-theme="dark"</code>。深色下 Accent 提亮为 <code>#4A7BA7</code> 以保证对比；Logo 换白标。</p>
+      <div class="callout">主按钮在深色下反转为白底黑字，保持「钢印」高对比，而不是用 Navy 填满。</div>
+      <div class="panel nmu-theme-dark" data-theme="dark" style="background:#000;color:#fff;border-color:#2A2A2A;" data-capture="dark-panel">
+        <div class="panel-head" style="border-color:#2A2A2A;"><h3 style="color:#fff;">深色面板示意</h3><span class="meta">scoped dark</span></div>
+        <div class="row" style="margin-bottom:16px;">
+          <button class="nmu-btn nmu-btn--primary" type="button">主要</button>
+          <button class="nmu-btn nmu-btn--secondary" type="button">次要</button>
+          <button class="nmu-btn nmu-btn--ghost" type="button">幽灵</button>
+          <button class="nmu-btn nmu-btn--danger" type="button">危险</button>
+        </div>
+        <div class="nmu-field" style="max-width:320px;">
+          <label class="nmu-label" style="color:#fff;">检索</label>
+          <input class="nmu-input" type="search" placeholder="搜索材料…" style="background:#000;color:#fff;border-color:#fff;" />
+        </div>
+        <div class="row" style="margin-top:12px;">
+          <span class="nmu-badge nmu-badge--accent">Accent</span>
+          <a href="#" style="color:#4A7BA7;">链接示例 Link</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOKENS -->
+    <section class="section" id="tokens">
+      <h2>设计令牌 <span class="en">Tokens</span></h2>
+      <p class="lead">机器可读源：<code>tokens/tokens.json</code> · 运行时：<code>tokens/tokens.css</code>。在产品中引入 CSS 变量，或将 JSON 导入 Style Dictionary / Figma Tokens。</p>
+      <div class="panel">
+        <pre class="mono" style="margin:0;white-space:pre-wrap;line-height:1.5;color:var(--nmu-text-secondary);">@import "tokens/tokens.css";
+
+.button-primary {
+  background: var(--nmu-primary);
+  color: var(--nmu-primary-fg);
+  border: 1px solid var(--nmu-primary);
+}
+.link { color: var(--nmu-accent); }
+:focus-visible { outline: 2px solid var(--nmu-focus-ring); }</pre>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      NEW MATERIALS UNION / 新材联 · UI Design Component Kit v1.0 · Scheme A locked · 2026-10-11<br/>
+      Logo geometry © brand VI · Navy accent only · Not a Material Design clone
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  const root = document.documentElement;
+  const navMark = document.getElementById('navMark');
+  const lightBtn = document.getElementById('themeLight');
+  const darkBtn = document.getElementById('themeDark');
+
+  function setTheme(mode) {
+    if (mode === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      navMark.src = 'assets/mark-white.png';
+      lightBtn.setAttribute('aria-pressed', 'false');
+      darkBtn.setAttribute('aria-pressed', 'true');
+    } else {
+      root.removeAttribute('data-theme');
+      navMark.src = 'assets/mark-black.png';
+      lightBtn.setAttribute('aria-pressed', 'true');
+      darkBtn.setAttribute('aria-pressed', 'false');
+    }
+    try { localStorage.setItem('nmu-ui-theme', mode); } catch (e) {}
+  }
+
+  lightBtn.addEventListener('click', function () { setTheme('light'); });
+  darkBtn.addEventListener('click', function () { setTheme('dark'); });
+  try {
+    const saved = localStorage.getItem('nmu-ui-theme');
+    if (saved === 'dark') setTheme('dark');
+  } catch (e) {}
+
+  // Tabs demo
+  document.querySelectorAll('.nmu-tabs').forEach(function (tabs) {
+    tabs.addEventListener('click', function (e) {
+      const btn = e.target.closest('.nmu-tab');
+      if (!btn || btn.disabled) return;
+      tabs.querySelectorAll('.nmu-tab').forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+      btn.setAttribute('aria-selected', 'true');
+    });
+  });
+  document.querySelectorAll('.nmu-seg').forEach(function (seg) {
+    seg.addEventListener('click', function (e) {
+      const btn = e.target.closest('button');
+      if (!btn || btn.disabled) return;
+      seg.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // Active nav link on scroll
+  const links = Array.from(document.querySelectorAll('.kit-nav a.nav-link'));
+  const sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function onScroll() {
+    let current = sections[0];
+    const y = window.scrollY + 80;
+    sections.forEach(function (s) { if (s.offsetTop <= y) current = s; });
+    links.forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
