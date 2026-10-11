@@ -22,6 +22,11 @@ Brand VI Deliverables / 品牌视觉识别交付包
 - **样式指南：** [`ui/NMU_UI_Kit.html`](ui/NMU_UI_Kit.html)
 - **说明与令牌：** [`ui/README.md`](ui/README.md) · `ui/tokens/`
 
+### PPT 模板（Blueprint Ink）
+- **可编辑母版：** [`ppt/NMU_PPT_Template_BlueprintInk_v1.pptx`](ppt/NMU_PPT_Template_BlueprintInk_v1.pptx)（30 页 · 16:9 · 方案 A）
+- **浏览器对照：** [`ppt/NMU_PPT_Template_BlueprintInk_v1.html`](ppt/NMU_PPT_Template_BlueprintInk_v1.html)
+- **说明：** [`ppt/README.md`](ppt/README.md)
+
 ### 如何使用 Logo
 | 场景 | 使用文件 |
 |------|----------|
@@ -49,7 +54,8 @@ Brand VI Deliverables / 品牌视觉识别交付包
 ├── svg/                            ← Mark + Lockup（近似矢量）
 ├── png/                            ← Master 锁定稿与导出
 ├── assets/                         ← 应用示意与规范图
-└── ui/                             ← UI 组件规范（HTML / tokens / 组件图）
+├── ui/                             ← UI 组件规范（HTML / tokens / 组件图）
+└── ppt/                            ← Blueprint Ink 演示模板（PPTX / HTML）
 ```
 
 ### 需人工矢量精修
@@ -72,6 +78,8 @@ Brand VI Deliverables / 品牌视觉识别交付包
 | Steel | `#8A9199` | Neutral |
 
 **UI kit:** [`ui/NMU_UI_Kit.html`](ui/NMU_UI_Kit.html) — component styles and design tokens locked to Scheme A. See [`ui/README.md`](ui/README.md).
+
+**PowerPoint:** [`ppt/NMU_PPT_Template_BlueprintInk_v1.pptx`](ppt/NMU_PPT_Template_BlueprintInk_v1.pptx) — 30-slide Blueprint Ink deck (Scheme A), with a browser companion. See [`ppt/README.md`](ppt/README.md).
 
 Company: 新材联（武汉）科技有限公司 · NEW MATERIALS UNION · AI-powered Building Industries.
 
