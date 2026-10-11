@@ -2,7 +2,7 @@
 Brand VI Deliverables / 品牌视觉识别交付包
 
 **Version:** 1.0 · 2026-10  
-**Logo status:** Locked（图标结构禁止修改）
+**Logo status:** Scheme A locked — the only official mark（图标结构禁止修改）
 
 ---
 
@@ -35,15 +35,17 @@ Brand VI Deliverables / 品牌视觉识别交付包
 ```
 ./
 ├── README.md                 ← 本说明
-├── docs/                     ← 决策简报（背景与锁定规则，不是第二套 VI）
+├── docs/                     ← 方案 A 定稿说明（唯一正式方案）
 ├── manual/                   ← 品牌手册 HTML / PDF
 ├── svg/                      ← 图标与横排锁矢量
 ├── png/                      ← PNG/JPG 导出（含 Master 锁定稿）
 └── assets/                   ← 名片、信纸、PPT、门头、海报等示意
 ```
 
-### 决策简报
-[`docs/NMU_Brand_VI_Brief.md`](docs/NMU_Brand_VI_Brief.md) 记录公司背景与已锁定的 Logo 规则，并保留当初并行对比任务的原文。本仓库中的手册与 Logo 文件是已锁定的 v1，不是待替换稿。
+### 方案 A（唯一正式方案）
+本仓库只收录 **方案 A**。白底黑标 / 黑底白标的横排锁，以及单独使用的图标，都是**同一枚标志**的用法变体，不是两套方案。
+
+[`docs/NMU_Brand_VI_Brief.md`](docs/NMU_Brand_VI_Brief.md) 是方案 A 定稿说明，并取代旧的 Codex 并行对比简报。不要另做第二套 Logo / VI。手册与 Logo 文件是已锁定的 v1。
 
 ### 需人工矢量精修的部分
 见文末英文节 “Needs human vector polish”。
@@ -81,8 +83,10 @@ Automated SVG reconstruction of the mark reaches **~99% IoU** vs the locked rast
 4. **Export final PDF/X or outlined AI/EPS** for print vendors after the above polish.  
 5. Application mockups in `assets/` are **indicative**, not die-line ready.
 
-### Decision brief
-[`docs/NMU_Brand_VI_Brief.md`](docs/NMU_Brand_VI_Brief.md) records company context and the locked logo rules, and keeps the original comparison-task note. The manual and logo files in this repository are the locked v1 system.
+### Scheme A is the only official system
+This repository documents **Scheme A only**. The black and white horizontal lockups, and the mark used on its own, are usage variants of the **same mark**, not two schemes.
+
+[`docs/NMU_Brand_VI_Brief.md`](docs/NMU_Brand_VI_Brief.md) is the Scheme A lock note. It supersedes the earlier Codex brief that asked for a parallel comparison VI. Do not produce a second logo or VI. The manual and logo files are the locked v1.
 
 ---
 
